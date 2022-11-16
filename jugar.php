@@ -18,7 +18,7 @@ $j2 = $_GET["Jugador2"];
         <h1>Jugador <?php echo $j1?> <br>barcos tirados= <span id="bTj1">0</span></h1>
             <table>
             <?php
-                //Crear el tablero para el jugador 2
+                //Crear el tablero para el jugador 1
                 for($i=0;$i<10;$i++){
                 ?>
                     <tr>
@@ -58,6 +58,7 @@ $j2 = $_GET["Jugador2"];
         </div>
     </center>
     <script>
+        //variables de los arrays de los 2 jugadores
         var nombrej1="<?php echo $j1;?>";
         var nombrej2="<?php echo $j2;?>";
         var tj1=[[],[],[],[],[],[],[],[],[],[]];
@@ -74,12 +75,15 @@ $j2 = $_GET["Jugador2"];
         btj1=0;
         btj2=0;
         
+        //llenado de los arrays
         for(let i=0;i<10;i++){
             for(let j=0;j<10;j++){
                 tj1[i][j]=0;
                 tj2[i][j]=0;
             }
         }
+        
+        //Con numeros randoms se selecciona la poscicion de los barcos
         while(bj1<10){
             let x = Math.floor(Math.random()*(9-0)+0);
             let y = Math.floor(Math.random()*(9-0)+0);
@@ -103,11 +107,15 @@ $j2 = $_GET["Jugador2"];
         console.log(tj1);
         console.log(tj2);
 
+        //funcion para comprobar donde tiro cada jugador
         function tirar(y,x,j){
+            //mientras no halla ganodo el juego se realizara lo siguiente
             if(ganar==false){
+                //dependiendo del jugador y si es suturno hara determinada instruccion
                 if(turnoj1==true){
                     if(j=='j1'){
                         if(tj2[y][x]==1){
+                            //saber si le dio a un barco
                             document.getElementById(y+"-"+x+"-j2").style.backgroundImage="url('img/tormenta.jpg')";
                             document.getElementById(y+"-"+x+"-j2").style.backgroundSize="cover";
                             tj2[y][x]=2;
@@ -121,8 +129,10 @@ $j2 = $_GET["Jugador2"];
                                 ganar=true;
                             }
                         }else if(tj2[y][x]==2){
+                            //si le dio a un lugar previamente precionado
                             turnoj1=true;
                         }else if(tj2[y][x]==0){
+                            //si le dio a mar
                             document.getElementById(y+"-"+x+"-j2").style.filter="brightness(0.5)";
                             tj2[y][x]=2;
                             turnoj1=false
@@ -132,8 +142,10 @@ $j2 = $_GET["Jugador2"];
                         }
                     }
                 }else if(turnoj2==true){
+                    //si es el turno del jugador 2
                     if(j=='j2'){
                         if(tj1[y][x]==1){
+                            //si le dio a un barco
                             document.getElementById(y+"-"+x+"-j1").style.backgroundImage="url('img/tormenta.jpg')";
                             document.getElementById(y+"-"+x+"-j1").style.backgroundSize="cover";
                             tj1[y][x]=2;
@@ -147,8 +159,10 @@ $j2 = $_GET["Jugador2"];
                                 ganar=true;
                             }
                         }else if(tj1[y][x]==2){
+                            //si le dio a un lugar antes precionado
                             turnoj2=true;
                         }else if(tj1[y][x]==0){
+                            //si le dio al mar
                             document.getElementById(y+"-"+x+"-j1").style.filter="brightness(0.5)";
                             tj1[y][x]=2;
                             turnoj2=false;
