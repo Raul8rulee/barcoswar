@@ -1,0 +1,19 @@
+.fondo{
+    background-image: url('../img/ame.jpeg');
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.foto{
+    background-image: url('../img/tormenta.jpg');
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+button{
+    height: 50px;width: 200px;font-family: 'Times New Roman';font-size: 20px;border-radius: 5px;background-color: rgb(25, 43, 87);
+}
